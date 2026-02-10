@@ -15,9 +15,9 @@ resource "aws_s3_bucket_versioning" "multi-region-bucket" {
 resource "aws_s3_bucket_server_side_encryption_configuration" "multi-region-bucket" {
   bucket = aws_s3_bucket.multi-region-bucket.id
 
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
     }
   }
 }

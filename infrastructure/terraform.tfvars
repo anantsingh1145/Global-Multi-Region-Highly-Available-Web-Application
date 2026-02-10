@@ -11,3 +11,9 @@ common_tags = {
   ManagedBy   = "Terraform"
   Owner       = "Anant-singh"
 }
+
+# VPC details
+vpc_name = "multi-region-vpc"
+vpc_cidr_block = "10.10.0.0/20"
+private_subnet_cidr_block = "10.10.0.0/23"
+public_subnet_cidr_block = "10.10.2.0/23"
