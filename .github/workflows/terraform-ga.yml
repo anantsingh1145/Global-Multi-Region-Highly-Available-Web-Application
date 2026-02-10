@@ -16,8 +16,9 @@ jobs:
           ls -la
           cd infrastructure
           ls -la
-          # cd ./infrastructure
-          # terraform validate
-          # terraform fmt
+          terraform validate
+          terraform fmt
       - name: initializing terraform
-        run: terraform init
+        run: |
+          cd terraform
+          terraform init
