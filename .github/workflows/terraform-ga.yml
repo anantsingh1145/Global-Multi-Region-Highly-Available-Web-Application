@@ -14,9 +14,9 @@ jobs:
       - name: getting into the terraform directory
         run: |
           ls -la
-          cd terraform
+          cd infrastructure
           ls -la
-          # cd ./terraform
+          # cd ./infrastructure
           # terraform validate
           # terraform fmt
       - name: initializing terraform
