@@ -11,6 +11,12 @@ jobs:
         uses: actions/checkout@v2
       - name: setting up terraform cli
         uses: hashicorp/setup-terraform@v2
+      - name: Setting up the AWS CLI
+        uses: aws/setup-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
       - name: getting into the terraform directory
         run: |
           ls -la
