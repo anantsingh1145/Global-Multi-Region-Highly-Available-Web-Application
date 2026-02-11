@@ -9,8 +9,12 @@ jobs:
     steps:
       - name: downloading the repo
         uses: actions/checkout@v2
-      - name: setting up terraform cli
-        uses: hashicorp/setup-terraform@v2
+      - name: caching the AWS Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.aws
+            ~/.aws-sam
       - name: downloading AWS CLI
         uses: aws-actions/setup-sam@v2
       - name: Setting up the AWS CLI
@@ -19,6 +23,13 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.SECRET_KEY }}
           aws-region: us-west-2
+      - name: caching the terraform dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.terraform.d/plugins
+      - name: setting up terraform cli
+        uses: hashicorp/setup-terraform@v2
       - name: getting into the terraform directory
         run: |
           ls -la
@@ -27,6 +38,5 @@ jobs:
           terraform init
       - name: initializing terraform
         run: |
-          cd terraform
           terraform validate
           terraform fmt
