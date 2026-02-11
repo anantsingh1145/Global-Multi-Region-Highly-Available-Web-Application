@@ -33,13 +33,14 @@ jobs:
       - name: getting into the terraform directory
         run: |
           ls -la
-          cd infrastructure
-          ls -la
           terraform init
+        working-directory: infrastructure
       - name: initializing terraform
         run: |
           terraform validate
           terraform fmt
+        working-directory: infrastructure
       - name: planning the terraform resources
         run: |
           terraform plan -out=tfplan
+        working-directory: infrastructure
