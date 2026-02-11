@@ -11,10 +11,12 @@ jobs:
         uses: actions/checkout@v2
       - name: caching the AWS Dependencies
         uses: actions/cache@v3
+        id: aws-cache
         with:
           path: |
             ~/.aws
             ~/.aws-sam
+          key: ${{ runner.os }}-aws-${{ hashFiles('infrastructure/**') }}
       - name: downloading AWS CLI
         uses: aws-actions/setup-sam@v2
       - name: Setting up the AWS CLI
@@ -25,11 +27,13 @@ jobs:
           aws-region: us-west-2
       - name: caching the terraform dependencies
         uses: actions/cache@v3
+        id: terraform-cache
         with:
           path: |
             ~/.terraform.d/plugins
+          key: ${{ runner.os }}-terraform-${{ hashFiles('infrastructure/**') }}
       - name: setting up terraform cli
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
       - name: getting into the terraform directory
         run: |
           ls -la
