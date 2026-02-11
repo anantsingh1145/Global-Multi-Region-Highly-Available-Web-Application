@@ -40,3 +40,6 @@ jobs:
         run: |
           terraform validate
           terraform fmt
+      - name: planning the terraform resources
+        run: |
+          terraform plan -out=tfplan
