@@ -48,7 +48,7 @@ jobs:
           name: terraform-folder
           include-hidden-files: true
           path: |
-            .terraform
+            infrastructure/.terraform
       - name: initializing terraform
         run: |
           terraform validate
@@ -91,6 +91,7 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: terraform-folder
+          path: infrastructure
       - name: listing the directory
         run: ls -la
       - name: initializing terraform
