@@ -41,7 +41,7 @@ jobs:
           ls -la
         working-directory: infrastructure
       - name: uploading the terraform folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: terraform-folder
           path: |
@@ -83,7 +83,7 @@ jobs:
       - name: setting up terraform cli
         uses: hashicorp/setup-terraform@v3
       - name: downloading the terraform folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: terraform-folder
       - name: listing the directory
