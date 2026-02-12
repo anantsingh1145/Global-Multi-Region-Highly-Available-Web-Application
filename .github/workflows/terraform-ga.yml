@@ -45,7 +45,7 @@ jobs:
         with:
           name: terraform-folder
           path: |
-            infrastructure/.terraform
+            .terraform
       - name: initializing terraform
         run: |
           terraform validate
