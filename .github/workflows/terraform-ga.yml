@@ -6,6 +6,9 @@ on:
 jobs:
   terraform-validate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+       working-directory: infrastructure
     steps:
       - name: downloading the repo
         uses: actions/checkout@v2
@@ -39,7 +42,6 @@ jobs:
           ls -la
           terraform init
           ls -la
-        working-directory: infrastructure
       - name: uploading the terraform folder
         uses: actions/upload-artifact@v6
         with:
@@ -51,10 +53,12 @@ jobs:
         run: |
           terraform validate
           terraform fmt
-        working-directory: infrastructure
   terraform-plan:
     runs-on: ubuntu-latest
     needs: terraform-validate
+    defaults:
+      run:
+       working-directory: infrastructure
     steps:
       - name: downloading the repo
         uses: actions/checkout@v2
@@ -94,4 +98,3 @@ jobs:
           terraform init
           terraform plan -out=tfplan
           ls -la
-        working-directory: infrastructure
