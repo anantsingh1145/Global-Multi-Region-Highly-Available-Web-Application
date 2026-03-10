@@ -12,16 +12,16 @@ jobs:
     steps:
       - name: downloading the repo
         uses: actions/checkout@v2
-      - name: caching the AWS Dependencies
-        uses: actions/cache@v3
-        id: aws-cache
-        with:
-          path: |
-            ~/.aws
-            ~/.aws-sam
-          key: aws-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
-      - name: downloading AWS CLI
-        uses: aws-actions/setup-sam@v2
+      # - name: caching the AWS Dependencies
+      #   uses: actions/cache@v3
+      #   id: aws-cache
+      #   with:
+      #     path: |
+      #       ~/.aws
+      #       ~/.aws-sam
+      #     key: aws-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
+      # - name: downloading AWS CLI
+      #   uses: aws-actions/setup-sam@v2
       - name: Setting up the AWS CLI
         uses: aws-actions/configure-aws-credentials@v6.0.0
         with:
@@ -33,7 +33,7 @@ jobs:
         id: terraform-cache
         with:
           path: |
-            ~/.terraform.d/plugins
+            infrastructure/.terraform
           key: terraform-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
       - name: setting up terraform cli
         uses: hashicorp/setup-terraform@v3
@@ -64,16 +64,16 @@ jobs:
     steps:
       - name: downloading the repo
         uses: actions/checkout@v2
-      - name: caching the AWS Dependencies
-        uses: actions/cache@v3
-        id: aws-cache
-        with:
-          path: |
-            ~/.aws
-            ~/.aws-sam
-          key: aws-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
-      - name: downloading AWS CLI
-        uses: aws-actions/setup-sam@v2
+      # - name: caching the AWS Dependencies
+      #   uses: actions/cache@v3
+      #   id: aws-cache
+      #   with:
+      #     path: |
+      #       ~/.aws
+      #       ~/.aws-sam
+      #     key: aws-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
+      # - name: downloading AWS CLI
+      #   uses: aws-actions/setup-sam@v2
       - name: Setting up the AWS CLI
         uses: aws-actions/configure-aws-credentials@v6.0.0
         with:
@@ -85,7 +85,7 @@ jobs:
         id: terraform-cache
         with:
           path: |
-              ~/.terraform.d/plugins
+              infrastructure/.terraform
           key: terraform-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
       - name: setting up terraform cli
         uses: hashicorp/setup-terraform@v3
