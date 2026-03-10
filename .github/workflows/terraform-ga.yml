@@ -79,9 +79,10 @@ jobs:
           path: infrastructure
       - name: listing the directory
         run: ls -la
-      - name: initializing terraform
+      - name: running terraform plan
         id: terraform-tfplan
         run: |
+          ls -la
           terraform plan -out=tfplan
           ls -la
           echo "tfplan=$PWD/tfplan" >> "$GITHUB_OUTPUT"
