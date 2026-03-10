@@ -19,7 +19,7 @@ jobs:
           path: |
             ~/.aws
             ~/.aws-sam
-          key: aws-cache-${{ hashFiles('infrastructure/**') }}
+          key: aws-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
       - name: downloading AWS CLI
         uses: aws-actions/setup-sam@v2
       - name: Setting up the AWS CLI
