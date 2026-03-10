@@ -39,6 +39,9 @@ jobs:
           include-hidden-files: true
           path: |
             infrastructure/.terraform
+            infrastructure/terraform.tfstate
+            infrastructure/terraform.tfstate.backup
+            infrastructure/.terraform.lock.hcl
       - name: initializing terraform
         run: |
           terraform validate
@@ -79,7 +82,6 @@ jobs:
       - name: initializing terraform
         id: terraform-tfplan
         run: |
-          terraform init
           terraform plan -out=tfplan
           ls -la
           echo "tfplan=$PWD/tfplan" >> "$GITHUB_OUTPUT"
@@ -118,4 +120,4 @@ jobs:
           name: tfplan
           path: infrastructure
       - name: checking the folder structure
-        run: ls -la
+        run: ls -la 
