@@ -34,7 +34,7 @@ jobs:
         with:
           path: |
             ~/.terraform.d/plugins
-          key: terraform-cache-${{ hashFiles('infrastructure/**') }}
+          key: terraform-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
       - name: setting up terraform cli
         uses: hashicorp/setup-terraform@v3
       - name: getting into the terraform directory
@@ -71,7 +71,7 @@ jobs:
           path: |
             ~/.aws
             ~/.aws-sam
-          key: aws-cache-${{ hashFiles('infrastructure/**') }}
+          key: aws-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
       - name: downloading AWS CLI
         uses: aws-actions/setup-sam@v2
       - name: Setting up the AWS CLI
@@ -86,7 +86,7 @@ jobs:
         with:
           path: |
               ~/.terraform.d/plugins
-          key: terraform-cache-${{ hashFiles('infrastructure/**') }}
+          key: terraform-cache-${{ hashFiles('**/*.tf', '**/*.tfvars') }}
       - name: setting up terraform cli
         uses: hashicorp/setup-terraform@v3
       - name: downloading the terraform folder
